@@ -16,7 +16,7 @@ You could download the dataset from:
 - CUDA version: **10.1**
 - Other settings please refer to *requirements.txt*
 
-We use **4 NVIDIA 1080ti GPU cards** for the training and more GPUS with large batch size will bring a little performance improvment.
+We use **4 NVIDIA 1080ti GPU cards** for the training and more GPUs with large batch size will bring a little performance improvment.
 
 ## Pretrain models
 
