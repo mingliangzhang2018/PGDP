@@ -6,11 +6,13 @@ We propose the **PGDPNet**, the first end-to-end deep learning model for explici
 
 <div align=center>
 	<img src="framework.png">
-	Framework of PGDPNet
+	**Figure 1.** Framework of PGDPNet
 </div>
 
-- **Compare with SGG**
-	![Compare with SGG](compare.png)
+<div align=center>
+	<img src="compare.png">
+	**Figure 2.** Compare with SGG
+</div>
 
 ## PGDP5K Dataset
 You could download the dataset from:
