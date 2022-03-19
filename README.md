@@ -1,4 +1,4 @@
-## Plane Geometry Diagram Parsing
+## Introduction of Plane Geometry Diagram Parsing (PGDP)
 
 The code and dataset for IJCAI 2022 Paper "*Plane Geometry Diagram Parsing*" [PDF].
 
