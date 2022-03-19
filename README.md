@@ -12,7 +12,12 @@ You could download the dataset from:
 - [GoogleDrive link](https://drive.google.com/file/d/1UnGJO70Tth8u_PAu3UiHixevw-_UfxrP/view?usp=sharing)
 
 ## Environmental settings
-This repository is developed using python **3.5.2** on Ubuntu **16.04.5 LTS**. The CUDA and CUDNN version is **9.0** and **7.1.3** respectively. For AiProducts experiments, we use **four NVIDIA 1080ti GPU cards** for training and testing. Other platforms or GPU cards are not fully tested.
+- python version: **3.8.3**
+- CUDA version: **10.1**
+- Other settings please refer to *requirements.txt*
+
+
+respectively. For AiProducts experiments, we use **four NVIDIA 1080ti GPU cards** for training and testing. Other platforms or GPU cards are not fully tested.
 
 ## Pretrain models
 
