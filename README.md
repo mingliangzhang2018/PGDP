@@ -5,8 +5,11 @@ The code and dataset for IJCAI 2022 Paper "*Plane Geometry Diagram Parsing*" [PD
 We propose the **PGDPNet**, the first end-to-end deep learning model for explicit geometry diagram parsing. And we construct a large-scale dataset **PGDP5K**, containing dense and fine-grained annotations of primitives and relations. Our method demonstrates superior performance of diagram parsing, outperforming previous methods remarkably.
 
 ![Framework of PGDPNet](framework.png)
+
 <center>Framework of PGDPNet</center>
+
 ![Compare with SGG](compare.png)
+
 <center>Compare with SGG</center>
 
 ## PGDP5K Dataset
