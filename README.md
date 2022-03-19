@@ -16,8 +16,7 @@ You could download the dataset from:
 - CUDA version: **10.1**
 - Other settings please refer to *requirements.txt*
 
-
-respectively. For AiProducts experiments, we use **four NVIDIA 1080ti GPU cards** for training and testing. Other platforms or GPU cards are not fully tested.
+We use **4 NVIDIA 1080ti GPU cards** for the training and more GPUS with large batch size will bring a little performance improvment.
 
 ## Pretrain models
 
