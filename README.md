@@ -10,7 +10,7 @@ We propose the **PGDPNet**, the first end-to-end deep learning model for explici
 <div align=center>
 	Figure 1. Framework of PGDPNet
 </div>
-</br></br>
+</br>
 <div align=center>
 	<img src="compare.png">
 </div>
