@@ -16,7 +16,7 @@ You could download the dataset from:
 - CUDA version: **10.1**
 - Other settings please refer to *requirements.txt*
 
-We use **4 NVIDIA 1080ti GPU cards** for the training and more GPUs with large batch size will bring a little performance improvment.
+We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch size will bring a little performance improvment.
 
 ## Pretrain models
 
@@ -75,6 +75,12 @@ AiProducts
     'num_classes': 50030
 }
 ```
+
+## Citation
+
+If the paper, the dataset, or the code helps you, please cite the paper in the following format:
+
+
 ## Acknowledge
 
-Thanks for the help of my partners Baole Wei, Yirong Yang. Please let me know if you encounter any issues(my email zhangmingliang2018@ia.ac.cn).
+Please let me know if you encounter any issues. You could contact with the first author (zhangmingliang2018@ia.ac.cn) or leave an issue in the github repo.
