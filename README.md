@@ -6,7 +6,6 @@ We propose the **PGDPNet**, the first end-to-end deep learning model for explici
 - **Framework of PGDPNet**
 	![Framework of PGDPNet](framework.png)
 - **Compare with SGG**
-
 	![Compare with SGG](compare.png)
 
 ## PGDP5K Dataset
