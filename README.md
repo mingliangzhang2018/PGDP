@@ -95,4 +95,4 @@ If the paper, the dataset, or the code helps you, please cite the paper in the f
 
 ## Acknowledge
 
-Please let me know if you encounter any issues. You could contact with the first author (zhangmingliang2018@ia.ac.cn) or leave an issue in the github repo.
+Please let us know if you encounter any issues. You could contact with the first author (zhangmingliang2018@ia.ac.cn) or leave an issue in the github repo.
