@@ -101,7 +101,7 @@ More experiments need to be tried such as different *image size*, *backbone*, *o
 
 
 ## Demo
-We also realize the demo script **demo/PGDP_Demo.ipynb**. Because this project has not implemented the text recognizer, only samples from the PGDP5K can be tested at this time where the text content is set as ground truth. During use, you could adjust corresponding variables, such as *config-file*, *weights*, *MODEL.DEVICE* and *img_path* in the demo script.
+We also realize the demo script `demo/PGDP_Demo.ipynb`. Because this project has not implemented the text recognizer, only samples from the PGDP5K can be tested at this time where the text content is set as ground truth. During use, you could adjust corresponding variables in the demo script, such as `config-file`, `weights`, `MODEL.DEVICE` and `img_path`.
 <div align=center>
 	<img src="demo.png">
 </div>
