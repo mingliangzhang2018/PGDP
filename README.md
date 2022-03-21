@@ -44,17 +44,16 @@ You could download the dataset from:
 ```
 #### Format of logic form
 ```
-"name": {
-    "point_instances": [...],
-    "line_instances": [...]
-    "circle_instances": [...],
-    "diagram_logic_forms": [
-        PointLiesOnLine, PointLiesOnCircle, Equals, MeasureOf, Perpendicular, Parallel, LengthOf, ...
+"**name**": {
+    "**point_instances**": [...],
+    "**line_instances**": [...]
+    "**circle_instances**": [...],
+    "**diagram_logic_forms**": [
+        *PointLiesOnLine*, *PointLiesOnCircle*, *Equals*, *MeasureOf*, *Perpendicular*, *Parallel*, *LengthOf*, ...
     ],
-    "point_positions": {...}
+    "**point_positions**": {...}
 }
 ```
-
 ## Environmental Settings
 - python version: **3.8.3**
 - CUDA version: **10.1**
