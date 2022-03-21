@@ -99,26 +99,7 @@ python tau_norm.py --RESUME_MODEL ./log/AiProducts/best_model.pth
 
 More experiments need to be tried such as different *image size*, *backbone*, *optimizer* or *learning rate decay method* which noly need change the config file.
 
-## Data format
 
-The annotation of a dataset is a dict consisting of two field: `annotations` and `num_classes`.
-The field `annotations` is a list of dict with `fpath` and `category_id`.
-
-Here is an example.
-```
-AiProducts
-{
-    'annotations': 
-	[
-        {
-		"category_id": 0, 
-		"fpath": "/val/00000/1849756.jpg"
-        },
-        ...
-    ]
-    'num_classes': 50030
-}
-```
 ## Demo
 
 
