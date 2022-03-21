@@ -22,6 +22,38 @@ We propose the **PGDPNet**, the first end-to-end deep learning model for explici
 You could download the dataset from:
 - [[BaiduYun link](https://pan.baidu.com/s/1GWqjq-IuQNal_Veo3p4RzQ?pwd=8nht)], _keyword_: 8nht
 - [[GoogleDrive link](https://drive.google.com/file/d/1KDB2EdXG3NsbkY7jAg2U2NJVJtEeMwR7/view?usp=sharing)]
+- 
+#### Format of annotation
+'''
+"name": {
+    "file_name": "name.png",
+    "width": ...,
+    "height": ...,
+    "geos": {
+        "points": [id, loc(x, y)], # 
+        "lines": [id, loc(x1, y1, x2, y2)],
+        "circles": [id, loc(x, y, r, quadrant)]           
+    },
+    "symbols": [id, sym_class, text_class, text_content, bbox(x, y, w, h)]
+    "relations": {
+        "geo2geo": [point2line(online, endpoint), point2circle(oncircle, center)],
+        "sym2sym": [...],
+        "sym2geo": [...]
+    }
+}
+'''
+#### Format of logic form
+'''
+"name": {
+    "point_instances": [...],
+    "line_instances": [...]
+    "circle_instances": [...],
+    "diagram_logic_forms": [
+        PointLiesOnLine, PointLiesOnCircle, Equals, MeasureOf, Perpendicular, Parallel, LengthOf, ...
+    ],
+    "point_positions": {...}
+}
+'''
 
 ## Environmental Settings
 - python version: **3.8.3**
