@@ -26,7 +26,7 @@ You could download the dataset from:
 #### Format of annotation
 ```
 "name": {
-    "file_name": "name.png",
+    "file_name": ...,
     "width": ...,
     "height": ...,
     "geos": {
@@ -44,14 +44,14 @@ You could download the dataset from:
 ```
 #### Format of logic form
 ```
-"**name**": {
-    "**point_instances**": [...],
-    "**line_instances**": [...]
-    "**circle_instances**": [...],
-    "**diagram_logic_forms**": [
-        *PointLiesOnLine*, *PointLiesOnCircle*, *Equals*, *MeasureOf*, *Perpendicular*, *Parallel*, *LengthOf*, ...
+"name": {
+    "point_instances": [...],
+    "line_instances": [...]
+    "circle_instances": [...],
+    "diagram_logic_forms": [
+        PointLiesOnLine, PointLiesOnCircle, Equals, MeasureOf, Perpendicular, Parallel, LengthOf, ...
     ],
-    "**point_positions**": {...}
+    "point_positions": {...}
 }
 ```
 ## Environmental Settings
