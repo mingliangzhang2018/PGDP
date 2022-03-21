@@ -36,10 +36,6 @@ conda install -c dglteam dgl-cuda10.1
 
 We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch size will bring a little performance improvment.
 
-## Pretrain models
-
-We provide the pretrain backbone of [resnet50](https://download.pytorch.org/models/resnet50-19c8e357.pth) or [resnet101](https://download.pytorch.org/models/resnet101-5d3b4d8f.pth) trained on ImageNet , which will put in the fold of **./pretrain_models**.
-And we also provide the best model of resnest50 [BaiduYun link](https://pan.baidu.com/s/1stfwhTeEALCofVFIKqGmvw), keyword: g2xy, [GoogleDrive link](https://drive.google.com/file/d/1VwzrvMU7M5gux5ZPyZPgMK4PizT3z7qi/view?usp=sharing)
 
 
 ## Usage
@@ -93,6 +89,9 @@ AiProducts
     'num_classes': 50030
 }
 ```
+## Demo
+
+
 
 ## Citation
 
