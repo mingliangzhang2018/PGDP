@@ -97,6 +97,14 @@ AiProducts
 ## Citation
 
 If the paper, the dataset, or the code helps you, please cite the paper in the following format:
+```
+@inproceedings{,
+  title = {Plane Geometry Diagram Parsing},
+  author = {},
+  booktitle = {},
+  year = {2022}
+}
+```
 
 
 ## Acknowledge
