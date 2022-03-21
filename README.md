@@ -1,6 +1,6 @@
-## Introduction of Plane Geometry Diagram Parsing (PGDP)
+## Plane Geometry Diagram Parsing (PGDP)
 
-The code and dataset for IJCAI 2022 Paper "*Plane Geometry Diagram Parsing*" [PDF].
+The code and dataset for IJCAI 2022 Paper "*Plane Geometry Diagram Parsing*" [PDF]().
 
 We propose the **PGDPNet**, the first end-to-end deep learning model for explicit geometry diagram parsing. And we construct a large-scale dataset **PGDP5K**, containing dense and fine-grained annotations of primitives and relations. Our method demonstrates superior performance of diagram parsing, outperforming previous methods remarkably.
 <div align=center>
@@ -27,6 +27,11 @@ You could download the dataset from:
 - python version: **3.8.3**
 - CUDA version: **10.1**
 - Other settings please refer to *requirements.txt*
+```
+conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.1 -c pytorch
+conda install -c dglteam dgl-cuda10.1
+pip install -r requirements.txt
+```
 
 We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch size will bring a little performance improvment.
 
@@ -94,5 +99,4 @@ If the paper, the dataset, or the code helps you, please cite the paper in the f
 
 
 ## Acknowledge
-
-Please let us know if you encounter any issues. You could contact with the first author (zhangmingliang2018@ia.ac.cn) or leave an issue in the github repo.
+The codes of this project are based on [FCOS](https://github.com/tianzhi0549/FCOS/) and [Inter-GPS](https://github.com/lupantech/InterGPS). Please let us know if you encounter any issues. You could contact with the first author (zhangmingliang2018@ia.ac.cn) or leave an issue in the github repo.
