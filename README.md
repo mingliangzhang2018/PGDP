@@ -23,7 +23,7 @@ You could download the dataset from:
 - [[BaiduYun link](https://pan.baidu.com/s/1GWqjq-IuQNal_Veo3p4RzQ?pwd=8nht)], _keyword_: 8nht
 - [[GoogleDrive link](https://drive.google.com/file/d/1KDB2EdXG3NsbkY7jAg2U2NJVJtEeMwR7/view?usp=sharing)]
 
-#### Format of annotation
+#### Format of Annotation
 ```
 "name": {
     "file_name": ...,
@@ -42,7 +42,7 @@ You could download the dataset from:
     }
 }
 ```
-#### Format of logic form
+#### Format of Logic Form
 ```
 "name": {
     "point_instances": [...],
