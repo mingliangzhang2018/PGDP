@@ -120,20 +120,93 @@ python calc_diagram_accuracy.py \
 --diagram_pred ...
 ```
 
-|    　       |                  | InterGPS | PGDPNet <br> w/o GNN |    PGDPNet   |
-|:-----------:|:----------------:|:--------:|:----------------:|:------------:|
-|     All     |    Likely Same   |   65.7   |       98.4       |      99      |
-|             |   Almost   Same  |   44.4   |       93.1       |     96.6     |
-|             | Perfect   Recall |    40    |       79.7       |     86.2     |
-|             |  Totally   Same  |   27.3   |   78.20 (+50.9)  | 84.70 (+6.5) |
-|   Geo2Geo   |    Likely Same   |   63.9   |       99.1       |      99      |
-|             |   Almost   Same  |   49.4   |       97.3       |     97.1     |
-|             | Perfect   Recall |   78.7   |       96.9       |     97.4     |
-|             |  Totally   Same  |   40.8   |       93.6       |     94.5     |
-| Non-Geo2Geo |    Likely Same   |   67.3   |       95.8       |      98      |
-|             |   Almost   Same  |   49.8   |       88.2       |     94.9     |
-|             | Perfect   Recall |   45.7   |       81.3       |      87      |
-|             |  Totally   Same  |   40.5   |       80.6       |     86.4     |
+<div align=center>
+	Table 1.Evaluation Results of Logic Form.
+</div>
+<table align="center">
+	<tr>
+        <td></td>
+        <td></td>
+	    <td align="center"><b>InterGPS</b></td>
+	    <td align="center"><b>PGDPNet<br>w/o GNN</b></td>
+	    <td align="center"><b>PGDPNet</b></td>  
+	</tr>
+    <tr>
+        <td rowspan="4"><b>All</b></td>
+        <td>Likely Same</td>
+	    <td align="center">65.7</td>
+	    <td align="center">98.4</td>
+	    <td align="center">99.0</td>  
+	</tr>
+    <tr>
+        <td>Almost Same</td>
+	    <td align="center">44.4</td>
+	    <td align="center">93.1</td>
+	    <td align="center">96.6</td>  
+	</tr>
+    <tr>
+        <td>Perfect Recall</td>
+	    <td align="center">40.0</td>
+	    <td align="center">79.7</td>
+	    <td align="center">86.2</td>  
+	</tr>
+    <tr>
+        <td>Totally Same</td>
+	    <td align="center"><b>27.3</b></td>
+	    <td align="center"><b>78.2<font color='red'> (+50.9) </font></b></td>
+	    <td align="center"><b>84.7<font color='red'> (+6.5) </font></b></td>  
+	</tr>
+      <tr>
+        <td rowspan="4"><b>Geo2Geo</b></td>
+        <td>Likely Same</td>
+        <td align="center">63.9</td>
+	    <td align="center">99.1</td>
+	    <td align="center">99.0</td>
+	</tr>
+    <tr>
+        <td>Almost Same</td>
+        <td align="center">49.4</td>
+	    <td align="center">97.3</td>
+	    <td align="center">97.1</td>   
+	</tr>
+    <tr>
+        <td>Perfect Recall</td>
+	    <td align="center">78.7</td>
+	    <td align="center">96.9</td>
+	    <td align="center">97.4</td>  
+	</tr>
+    <tr>
+        <td>Totally Same</td>
+	    <td align="center">40.8</td>
+	    <td align="center">93.6</td>
+	    <td align="center">94.5</td>  
+	</tr>
+      <tr>
+        <td rowspan="4"><b>Non-Geo2Geo</b></td>
+        <td>Likely Same</td>
+	    <td align="center">67.3</td>
+	    <td align="center">95.8</td>
+	    <td align="center">98.0</td>  
+	</tr>
+    <tr>
+        <td>Almost Same</td>
+	    <td align="center">49.8</td>
+	    <td align="center">88.2</td>
+	    <td align="center">94.9</td>  
+	</tr>
+    <tr>
+        <td>Perfect Recall</td>
+	    <td align="center">45.7</td>
+	    <td align="center">81.3</td>
+	    <td align="center">87.0</td>  
+	</tr>
+    <tr>
+        <td>Totally Same</td>
+	    <td align="center">40.5</td>
+	    <td align="center">80.6</td>
+	    <td align="center">86.4</td>  
+	</tr>
+</table>
 
 ## Demo
 We also realize the demo script in the `demo/PGDP_Demo.ipynb`. Because this project has not implemented a text recognizer, only samples from the PGDP5K can be tested at this time Whose text contents are set as ground truth. During use, you could adjust corresponding variables in the demo script, such as `config-file`, `weights`, `MODEL.DEVICE` and `img_path`.
