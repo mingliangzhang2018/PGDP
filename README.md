@@ -218,7 +218,7 @@ We also realize the demo script in the `demo/PGDP_Demo.ipynb`. Because this proj
 
 ## Citation
 
-If the paper, the dataset, or the code helps you, please cite the paper in the following format:
+If the paper, the dataset, or the code helps you, please cite the papers in the following format:
 ```
 @inproceedings{,
   title = {Plane Geometry Diagram Parsing},
