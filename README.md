@@ -121,6 +121,7 @@ python calc_diagram_accuracy.py \
 <div align=center>
 	Table 1.Evaluation Results of Logic Form.
 </div>
+</br>
 <table align="center">
 	<tr>
         <td colspan="2"></td>
