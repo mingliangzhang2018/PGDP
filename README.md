@@ -75,7 +75,6 @@ We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch 
 The following will install the lib with symbolic links, so that you can modify the files if you want and won't need to re-build it.
 ```
 cd ./PGDP
-
 python setup.py build develop --no-deps
 ```
 
@@ -85,13 +84,13 @@ At first, you should set the paths of dataset in the `./geo_parse/config/paths_c
 
 ```
 python -m torch.distributed.launch \
---nproc_per_node=4 \
---master_port=$((RANDOM + 10000)) \
-tools/train_net.py \
---config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
-SOLVER.IMS_PER_BATCH 12 \
-TEST.IMS_PER_BATCH 12 \
-OUTPUT_DIR training_dir/PGDP5K_geo_MNV2_FPN
+    --nproc_per_node=4 \
+    --master_port=$((RANDOM + 10000)) \
+    tools/train_net.py \
+    --config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
+    SOLVER.IMS_PER_BATCH 12 \
+    TEST.IMS_PER_BATCH 12 \
+    OUTPUT_DIR training_dir/PGDP5K_geo_MNV2_FPN
 ```
 The training records of the PGDPNet are saved in the folder `OUTPUT_DIR`, including models, log, last checkpoint and inference results.  
 
@@ -101,9 +100,9 @@ Set the path of model weight and corresponding config file to get inference resu
 
 ```
 python tools/test_net.py \
---config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
-MODEL.WEIGHT training_dir/PGDP5K_geo_MNV2_FPN/model_final.pth \
-TEST.IMS_PER_BATCH 3
+    --config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
+    MODEL.WEIGHT training_dir/PGDP5K_geo_MNV2_FPN/model_final.pth \
+    TEST.IMS_PER_BATCH 3
 ```
 The inference process use one GPU with batch size 3 in default. Due to affect of image resolution in the preprocessing, it has some difference ammong experimental results with various batch sizes. And You could reduce image resolutions appropriatly to accelerate inference while maintaining comparable performance.
 
@@ -113,11 +112,10 @@ Considering the diversity and equality of logic forms, we improved the evaluatio
 
 ```
 cd ./InterGPS/diagram_parser/evaluation_new
-
 python calc_diagram_accuracy.py \ 
---test_set_path ./PGDP5K/test \ 
---diagram_gt ./PGDP5K/our_diagram_logic_forms_annot.json \ 
---diagram_pred ...
+    --test_set_path ./PGDP5K/test \ 
+    --diagram_gt ./PGDP5K/our_diagram_logic_forms_annot.json \ 
+    --diagram_pred ...
 ```
 
 <div align=center>
@@ -125,8 +123,7 @@ python calc_diagram_accuracy.py \
 </div>
 <table align="center">
 	<tr>
-        <td></td>
-        <td></td>
+        <td colspan="2"></td>
 	    <td align="center"><b>InterGPS</b></td>
 	    <td align="center"><b>PGDPNet<br>w/o GNN</b></td>
 	    <td align="center"><b>PGDPNet</b></td>  
