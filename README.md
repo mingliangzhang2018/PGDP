@@ -74,7 +74,6 @@ We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch 
 
 The following will install the lib with symbolic links, so that you can modify the files if you want and won't need to re-build it.
 ```
-cd ./PGDP
 python setup.py build develop --no-deps
 ```
 
@@ -112,6 +111,8 @@ Considering the diversity and equality of logic forms, we improved the evaluatio
 
 ```
 cd ./InterGPS/diagram_parser/evaluation_new
+```
+```
 python calc_diagram_accuracy.py \ 
     --test_set_path ./PGDP5K/test \ 
     --diagram_gt ./PGDP5K/our_diagram_logic_forms_annot.json \ 
