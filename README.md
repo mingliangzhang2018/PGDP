@@ -1,6 +1,6 @@
 ## Plane Geometry Diagram Parsing (PGDP)
 
-The code and dataset for IJCAI 2022 Paper "[*Plane Geometry Diagram Parsing*]()".
+The code and dataset for IJCAI 2022 paper "[*Plane Geometry Diagram Parsing*]()".
 
 We propose the **PGDPNet**, the first end-to-end deep learning model for explicit geometry diagram parsing. And we construct a large-scale dataset **PGDP5K**, containing dense and fine-grained annotations of primitives and relations. Our method demonstrates superior performance of diagram parsing, outperforming previous methods remarkably.
 <div align=center>
@@ -17,6 +17,10 @@ We propose the **PGDPNet**, the first end-to-end deep learning model for explici
 <div align=center>
 	Figure 2. Compare with SGG
 </div>
+
+## Updates
+
+- Complete submission of the initial model (1/4/2022)
 
 ## PGDP5K Dataset
 You could download the dataset from:
@@ -64,44 +68,75 @@ conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10
 conda install -c dglteam dgl-cuda10.1
 ```
 
-We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch size will bring a little performance improvment.
+We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch size will bring some performance improvment.
 
+## Installation
 
+The following will install the lib with symbolic links, so that you can modify the files if you want and won't need to re-build it.
+```
+cd ./PGDP
 
-## Usage
-
-Decompress three json files of train/val/test datasets in the fold of **./dataset/AiProducts**, more details please see the config files in the fold of **./configs**.
-
-```bash
-# Get dataset of AiProducts
-sh ./dataset/get_dataset_AiProducts.sh
+python setup.py build develop --no-deps
 ```
 
-```bash
-# Training the model and the models will be saved in the fold of ./log/AiProducts 
-python main.py  
+## Training
+
+At first, you should set the paths of dataset in the `./geo_parse/config/paths_catalog.py`. Change the varibles of `DATA_DIR`, `PGDP5K_train`, `PGDP5K_val` and `PGDP_test` according to the location of PGDP5K dataset. The default parameter configurations are set in the config files of `./configs/PGDP5K/geo_MNV2_FPN.yaml` and `./geo_parse/config/defaults.py`, and you could adjust them according to your situations.
+
+```
+python -m torch.distributed.launch \
+--nproc_per_node=4 \
+--master_port=$((RANDOM + 10000)) \
+tools/train_net.py \
+--config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
+SOLVER.IMS_PER_BATCH 12 \
+TEST.IMS_PER_BATCH 12 \
+OUTPUT_DIR training_dir/PGDP5K_geo_MNV2_FPN
+```
+The training records of the PGDPNet are saved in the folder `OUTPUT_DIR`, including models, log, last checkpoint and inference results.  
+
+## Inference
+
+Set the path of model weight and corresponding config file to get inference results, and the parsing results are saved in the new folder `.\inference` by default.
+
+```
+python tools/test_net.py \
+--config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
+MODEL.WEIGHT training_dir/PGDP5K_geo_MNV2_FPN/model_final.pth \
+TEST.IMS_PER_BATCH 3
+```
+The inference process use one GPU with batch size 3 in default. Due to affect of image resolution in the preprocessing, it has some difference ammong experimental results with various batch sizes. And You could reduce image resolutions appropriatly to accelerate inference while maintaining comparable performance.
+
+## Logic Form Evaluation
+
+Considering the diversity and equality of logic forms, we improved the evaluation method based on [Inter-GPS](https://github.com/lupantech/InterGPS). You can evaluate the generated logic forms compared with the ground truth:
+
+```
+cd ./InterGPS/diagram_parser/evaluation_new
+
+python calc_diagram_accuracy.py \ 
+--test_set_path ./PGDP5K/test \ 
+--diagram_gt ./PGDP5K/our_diagram_logic_forms_annot.json \ 
+--diagram_pred ...
 ```
 
-```bash
-# Finetune the model
-python main.py --RESUME_MODEL ./log/AiProducts/best_model.pth --DATASET_TRAIN_JSON ./dataset/AiProducts/converted_val.json 
-```
- 
-```bash
-# Test the model
-python test.py --RESUME_MODEL ./log/AiProducts/best_model.pth
-```
-
-```bash
-# Adjust the classifier using the tau-norm method and the models will be saved in the fold of ./log_tau
-python tau_norm.py --RESUME_MODEL ./log/AiProducts/best_model.pth
-```
-
-More experiments need to be tried such as different *image size*, *backbone*, *optimizer* or *learning rate decay method* which noly need change the config file.
-
+|    　       |                  | InterGPS | PGDPNet <br> w/o GNN |    PGDPNet   |
+|:-----------:|:----------------:|:--------:|:----------------:|:------------:|
+|     All     |    Likely Same   |   65.7   |       98.4       |      99      |
+|             |   Almost   Same  |   44.4   |       93.1       |     96.6     |
+|             | Perfect   Recall |    40    |       79.7       |     86.2     |
+|             |  Totally   Same  |   27.3   |   78.20 (+50.9)  | 84.70 (+6.5) |
+|   Geo2Geo   |    Likely Same   |   63.9   |       99.1       |      99      |
+|             |   Almost   Same  |   49.4   |       97.3       |     97.1     |
+|             | Perfect   Recall |   78.7   |       96.9       |     97.4     |
+|             |  Totally   Same  |   40.8   |       93.6       |     94.5     |
+| Non-Geo2Geo |    Likely Same   |   67.3   |       95.8       |      98      |
+|             |   Almost   Same  |   49.8   |       88.2       |     94.9     |
+|             | Perfect   Recall |   45.7   |       81.3       |      87      |
+|             |  Totally   Same  |   40.5   |       80.6       |     86.4     |
 
 ## Demo
-We also realize the demo script `demo/PGDP_Demo.ipynb`. Because this project has not implemented the text recognizer, only samples from the PGDP5K can be tested at this time where the text content is set as ground truth. During use, you could adjust corresponding variables in the demo script, such as `config-file`, `weights`, `MODEL.DEVICE` and `img_path`.
+We also realize the demo script in the `demo/PGDP_Demo.ipynb`. Because this project has not implemented a text recognizer, only samples from the PGDP5K can be tested at this time Whose text contents are set as ground truth. During use, you could adjust corresponding variables in the demo script, such as `config-file`, `weights`, `MODEL.DEVICE` and `img_path`.
 <div align=center>
 	<img src="demo.png">
 </div>
