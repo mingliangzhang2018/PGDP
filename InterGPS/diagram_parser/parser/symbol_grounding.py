@@ -26,7 +26,6 @@ def parser_to_generate_description(graph_parse, known_labels, delete_points, for
             if len(distances) > 0:
                 # We should find a nearby label as the center of circlce.
                 # print (distances)
-                # 可能出现矛盾
                 v = min(distances, key=lambda pair: pair[1])
                 if v[1] > 35: continue
                 label = v[0]
@@ -54,10 +53,10 @@ def parser_to_generate_description(graph_parse, known_labels, delete_points, for
         
         if len(arr) > 1 and type_ == 'line' and arr[0] == 'length':
             distances = [(key, label_distance_to_line(label_point, instance, True)) for key, instance in instances.items()]
-        elif type_ == 'line': # 'l/m/n' to represent a line (这一部分没有实现)
+        elif type_ == 'line': # 'l/m/n' to represent a line
             distances = [(key, label_distance_to_line(label_point, instance, False)) for key, instance in instances.items()]
         elif type_ == 'point':
-            #print (x, y, label)
+            # print (x, y, label)
             distances = [(key, label_distance_to_point(label_point, instance)) for key, instance in instances.items() if not key in circles.keys()]
         elif type_ == 'arc':
             distances = [(key, label_distance_to_arc(label_point, instance)) for key, instance in instances.items()]
@@ -65,7 +64,6 @@ def parser_to_generate_description(graph_parse, known_labels, delete_points, for
             # filter subangles
             distances = [(key, label_distance_to_angle(label_point, instance)) for key, instance in instances.items()]
         
-        #print (type_, label, distances)
         if len(distances) == 0: 
             log_message.append('The distances is empty, but there is: ' + str(label) + ' ' + str(type_))
             continue
@@ -88,7 +86,7 @@ def parser_to_generate_description(graph_parse, known_labels, delete_points, for
                 formula = FormulaNode(signatures['Equals'], [formula, label_formula])
 
         elif type_ == 'point':
-            #print (distances, argmin_key)
+            # print (distances, argmin_key)
             formula = graph_parse.point_variables[argmin_key]
             point_key_dict[label] = argmin_key
         elif type_ == 'angle':

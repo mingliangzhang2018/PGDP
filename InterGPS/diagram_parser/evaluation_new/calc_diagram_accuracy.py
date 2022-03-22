@@ -1,13 +1,8 @@
-
-
 import json
 import metric
 import argparse
 import numpy as np
 from itertools import product, combinations
-import re
-import os
-
 import sys
 sys.path.append("../../symbolic_solver")
 
@@ -60,7 +55,7 @@ def generate_GeoSolver(point_positions, lines, circles, diagram_logic_forms):
         try:
             parser.dfsParseTree(logic_form)
         except Exception as e:
-            #print("\033[0;0;41mError:\033[0m", repr(e))
+            # print("\033[0;0;41mError:\033[0m", repr(e))
             print(repr(e))
     return parser
 
@@ -118,7 +113,6 @@ def diagram_evaluaion(graph_gt, graph_test):
     mp = match_points(*point_positions)
 
     for i in range(2):
-
         j = i^1
         result = Recall if i == 0 else Accuracy
         result['logic_forms_all'] = 0
@@ -128,7 +122,6 @@ def diagram_evaluaion(graph_gt, graph_test):
         parser = generate_GeoSolver(point_positions[i], lines[i], circles[i], diagram_logic_forms[i])
 
         for logic_form in diagram_logic_forms[i]:
-
             # generate all possible logic form without further inference 
             all_possibles = metric.generate_all(logic_form, parser, point_positions[i])
             
@@ -151,7 +144,7 @@ def diagram_evaluaion(graph_gt, graph_test):
 
         result['points'] = sum([x != None for x in mp[i].values()])
 
-        # 寻找正确的点的名称（有些点的名称不是大写字母）
+        # find the correct point name (some point names are not capital letters)
         for s in lines[i]:
             if len(s)==2: 
                 s0, s1 = s[0], s[1]
@@ -163,7 +156,9 @@ def diagram_evaluaion(graph_gt, graph_test):
                         break                    
             if (str(mp[i][s0])+str(mp[i][s1])) in lines[j] or (str(mp[i][s1])+str(mp[i][s0])) in lines[j]:
                 result['lines'] +=1
-        result['circles'] = sum([mp[i].get(x[0], None) != None for x in circles[i]]) # consider same center circle
+
+        # consider same center circle
+        result['circles'] = sum([mp[i].get(x[0], None) != None for x in circles[i]]) 
 
         IoU['logic_forms_all'] = div(result['logic_forms_all'], len(diagram_logic_forms[0]) + len(diagram_logic_forms[1]) - result['logic_forms_all'])
         IoU['logic_forms_geo2geo'] = div(result['logic_forms_geo2geo'], len(diagram_logic_forms_geo2geo[0]) + len(diagram_logic_forms_geo2geo[1]) - result['logic_forms_geo2geo'])
@@ -187,7 +182,6 @@ if __name__ == '__main__':
     parser.add_argument('--test_set_path', default="/lustre/home/mlzhang/Datasets/PGDP5K/test")
     parser.add_argument('--diagram_gt', default="/lustre/home/mlzhang/Datasets/PGDP5K/our_diagram_logic_forms_annot.json")
     parser.add_argument('--diagram_pred', default="/lustre/home/mlzhang/GeoMathQA/Geo_parsing_GAT/inference/PGDP5K_geo_MNV2_FPN_2x_VIS_SEM_LOC_large_24/model_final.pth_True_1_0.5/logic_forms_pred.json")
-    
     parser = parser.parse_args()
 
     with open(parser.diagram_gt, "r") as f1:
@@ -199,9 +193,7 @@ if __name__ == '__main__':
     RecallList = []
     IoUList = []
 
-    # img_list = [item.replace('.png','') for item in os.listdir(parser.test_set_path)]
     for key in pred:
-        # if key!='Screenshot - 2021-11-04 16.17.54_600.png':
         print(key)
         Accuracy, Recall, IoU = diagram_evaluaion(gt.get(key, None), pred.get(key, None))
         AccuracyList.append(Accuracy)
@@ -210,11 +202,12 @@ if __name__ == '__main__':
 
     for element in ['points', 'lines', 'circles', 'logic_forms_all','logic_forms_geo2geo','logic_forms_geo2sym']:
         accuracy = np.mean([x[element] for x in AccuracyList])
-        # print([x[element] for x in AccuracyList])
         recall = np.mean([x[element] for x in RecallList])
         f1score = calc_f1(accuracy, recall)
         iou = np.mean([x[element] for x in IoUList])
-        print("Average " + element + " result among test data:   Accuracy: %.2f%%  Recall: %.2f%%  F1 Score: %.2f%%  IoU: %.2f%%" % (accuracy*100, recall*100, f1score*100, iou*100))
+        print("Average " + element + \
+                " result among test data:   Accuracy: %.2f%%  Recall: %.2f%%  F1 Score: %.2f%%  IoU: %.2f%%" \
+                    % (accuracy*100, recall*100, f1score*100, iou*100))
     
     for element in ['logic_forms_all','logic_forms_geo2geo','logic_forms_geo2sym']:
         print('#################### '+element+' ########################')

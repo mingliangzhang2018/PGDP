@@ -25,12 +25,9 @@ def get_real_label(latex_text):
     latex_text = latex_text.strip('.').strip('(').strip(')')
     return latex_text
 
-
-#######################################################################
-# 对latex识别的内容进行调整转化
 def modify(now):
     '''
-    fix the latex text
+        Adjust and transform the identified content in the latex style
     '''
     now = ''.join(now.split()) # add 
     if now == "": return now
@@ -45,19 +42,19 @@ def modify(now):
     for unit in units:
         if now.endswith(unit):
             now = now.replace(unit, "")
-    return now.strip() #  strip方法用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列
-
-print(modify("v ^ { 2 }"))
+    return now.strip() 
 
 def load_symbol(problem_list, ocr_path, box_path):
-    # ocr_results: (x1,y1,x2,y2, ocr results) 
-        # (514, 188, 614, 246, '15.4')
-        # (273, 248, 334, 309, 'Q')
-        # (402, 261, 486, 325, '83^{\\circ}')
-    # sign_results: (x1,y1,x2,y2, sign)
-        # (235,404,325,482,perpendicular)
-    # size_results: (h, w)
-        # image shape
+    '''
+        ocr_results: (x1,y1,x2,y2, ocr results) 
+            (514, 188, 614, 246, '15.4')
+            (273, 248, 334, 309, 'Q')
+            (402, 261, 486, 325, '83^{\\circ}')
+        sign_results: (x1,y1,x2,y2, sign)
+            (235,404,325,482,perpendicular)
+        size_results: (h, w)
+            image shape
+    '''
     ocr_results = {}
     sign_results = {}
     size_results = {}
@@ -71,11 +68,11 @@ def load_symbol(problem_list, ocr_path, box_path):
             print ("Can not find the mathpix result:", current_path)
         else:
             tex_list = set([x.split('.')[0] for x in os.listdir(current_path)])
-            #print (tex_list)
+            # print (tex_list)
             for tex_id in tex_list:
                 with open(os.path.join(current_path, tex_id + ".txt"), "r") as f:
                     position = tuple(map(int, f.readline().split(',')[:-1]))
-                #print (position, os.path.join(current_path, tex_id + ".json"))
+                # print (position, os.path.join(current_path, tex_id + ".json"))
                 with open(os.path.join(current_path, tex_id + ".json"), "r") as f:
                     mathpix = json.load(f)
                 
@@ -95,7 +92,6 @@ def load_symbol(problem_list, ocr_path, box_path):
         if not os.path.exists(os.path.join(box_path, name + ".txt")):
             print ("Can not find the box file:", name)
         else:
-            
             with open(os.path.join(box_path, name + ".txt"), "r") as f:
                 for data in f.readlines():
                     if data.strip() == "":
@@ -104,34 +100,10 @@ def load_symbol(problem_list, ocr_path, box_path):
                     if type_!= 'text':
                         sign = tuple(map(int, data.split(',')[:-1])) + (type_, )
                         sign_results[name].append(sign)
-
             if os.path.exists(os.path.join(box_path, name + ".jpg")):
                 size_results[name] = cv2.imread(os.path.join(box_path, name + ".jpg")).shape[0:2]
             elif os.path.exists(os.path.join(box_path, name + "_modified.jpg")):
                 size_results[name] = cv2.imread(os.path.join(box_path, name + "_modified.jpg")).shape[0:2]
+
     return ocr_results, sign_results, size_results
 
-# current_path = "/lustre/home/mlzhang/GeoMathQA/InterGPS/diagram_parser/detection_results/ocr_results/2415"
-# if not os.path.exists(current_path):
-#     print ("Can not find the mathpix result:", current_path)
-# else:
-#     tex_list = set([x.split('.')[0] for x in os.listdir(current_path)])
-#     #print (tex_list)
-#     for tex_id in tex_list:
-#         with open(os.path.join(current_path, tex_id + ".txt"), "r") as f:
-#             position = tuple(map(int, f.readline().split(',')[:-1]))
-#         #print (position, os.path.join(current_path, tex_id + ".json"))
-#         with open(os.path.join(current_path, tex_id + ".json"), "r") as f:
-#             mathpix = json.load(f)
-        
-#         label = ""
-#         if 'data' in mathpix and type(mathpix['data']) in [list, tuple] and len(mathpix['data']) > 0:
-#             label = get_real_label(mathpix['data'][1]['value'])
-#         elif 'latex_simplified' in mathpix:
-#             label = mathpix['latex_simplified']
-#         elif 'text' in mathpix:
-#             label = mathpix['text']
-#         else:
-#             print("can not read ocr result:", os.path.join(current_path, tex_id))
-#         label = modify(label)
-#         print(position + (label, ))

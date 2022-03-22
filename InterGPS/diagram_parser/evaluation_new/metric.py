@@ -13,23 +13,6 @@ args = arg + ZeroOrMore( Literal(",").suppress() + arg)
 expression <<= identifier + lparen + Optional(args)  + rparen
 
 
-# def get_point_dist(p0, p1):
-#     dist = math.sqrt((p0[0]-p1[0])**2
-#                     +(p0[1]-p1[1])**2)
-#     return dist
-
-# def sub_vec(vec1,vec2):
-#     return (np.array(vec1)-np.array(vec2)).tolist()
-
-# def get_angle(point1, point2, cross_point):
-#     vec1 = sub_vec(point1, cross_point)
-#     vec2 = sub_vec(point2, cross_point)
-#     vector_prod = vec1[0] * vec2[0] + vec1[1] * vec2[1]
-#     length_prod = get_point_dist(point1, cross_point)*get_point_dist(point2, cross_point)
-#     cos_value = vector_prod * 1.0 / (length_prod * 1.0 + 1e-8)
-#     cos_value = min(1,max(-1,cos_value))
-#     return (math.acos(cos_value) / math.pi) * 180
-
 def DiagramResult():
     ret = {}
     ret['points'] = 0.0
@@ -87,15 +70,18 @@ def generate_all(phrase, parser, point_positions):
     
     content = [generate_all(element, parser, point_positions) for element in phrase[1:]]
 
-
     # Can not change
-    if len(phrase) == 2 or phrase[0] in ["Circle", "PointLiesOnLine", "PointLiesOnCircle", "BisectsAngle", "InscribedIn", "IsMidpointOf", "LegOf", "IsCentroidOf", "IsIncenterOf", "IsRadiusOf", "IsDiameterOf", "IsMidsegmentOf", "IsChordOf", "IsDiagonalOf", "RatioOf"]:
+    if len(phrase) == 2 or phrase[0] in ["Circle", "PointLiesOnLine", "PointLiesOnCircle", "BisectsAngle", \
+                                        "InscribedIn", "IsMidpointOf", "LegOf", "IsCentroidOf", "IsIncenterOf", \
+                                        "IsRadiusOf", "IsDiameterOf", "IsMidsegmentOf", "IsChordOf", "IsDiagonalOf", \
+                                        "RatioOf"]:
         ret = [[phrase[0]]]
         for x in content:
             ret = listmul(ret, x)
         return ret
     # Any order
-    elif phrase[0] == "Arc" and len(phrase) == 3 or phrase[0] in ["Equals", "Line", "Parallel", "Perpendicular", "Congruent", "Similar", "Add", "Mul", "SumOf"]:
+    elif phrase[0] == "Arc" and len(phrase) == 3 or phrase[0] in ["Equals", "Line", "Parallel", "Perpendicular", \
+                                                                 "Congruent", "Similar", "Add", "Mul", "SumOf"]:
         ret = []
         for cur in permutations(content):
             expr = [[phrase[0]]]
@@ -170,7 +156,6 @@ def same(phrase1, phrase2, mp):
     Check whether two logic forms are same.
     Note that all the points in phrase1 should be replaced by dict mp.
     '''
-
     if type(phrase1) != type(phrase2):
         return False
 

@@ -114,13 +114,6 @@ if __name__ == "__main__":
     parser.add_argument('--output_path', default='diagram_logic_form.json')
     
     parser = parser.parse_args()
-
-    # mapping_file = 'number_index.json'
-    # log_file = 'log' + time.time() + ".txt"
-    # print (log_file)
-
-    # with open(mapping_file) as f:
-    #     from_id_to_newid = json.load(f)
         
     test_data = list(range(2401, 3002))
     detection_id = list(map(str, test_data))
@@ -140,10 +133,10 @@ if __name__ == "__main__":
         para_lst.append((data_id, box_id, ocr_results[box_id], sign_results[box_id], data, img, factor))
     
     ################################################################
-    # 算法核心进入
+    # core entry of method
     solve_list = []
-    with tqdm(total=len(para_lst), ncols=80) as t: # ncols 可以自定义进度条的总长度
-        with Pool(24) as p: # 32个进程
+    with tqdm(total=len(para_lst), ncols=80) as t: 
+        with Pool(24) as p: 
             for answer in p.imap_unordered(multithread_solve, para_lst):
                 solve_list.append(answer)
                 t.update()
@@ -152,13 +145,11 @@ if __name__ == "__main__":
     solve_list = sorted(solve_list, key=lambda x: int(x['id']))
     final = {}
     for entry in solve_list:
-        # 序号项作为key
         id = entry["id"]
         del entry["id"]
         final[id] = entry
 
     with open(parser.output_path, "w") as f:
-        # 美化json文件
         json.dump(final, f, indent = 2)
         
         

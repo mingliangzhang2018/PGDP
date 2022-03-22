@@ -31,18 +31,18 @@ def in_line(line, point):
     # (line.a - point) * (line.b - point) <= 0
     # print (line, point, (line.a.x - point.x) * (line.b.x - point.x) + (line.b.y - point.y) * (line.a.y - point.y))
     return ((line[0][0] - point[0]) * (line[1][0] - point[0]) + (line[1][1] - point[1]) * (line[0][1] - point[1]) <= 0
-    # 点积小于0,即夹角为钝角
+    # The dot product is less than 0, which means the angle is obtuse angle
             or dist(line[0], point) <= 4 or dist(line[1], point) <= 4)
 
 def solvePerpendicular(box, graph_parse, delete_points, formula_list, log_message):
     points = get_all_instances(graph_parse, 'point')
-    # 所有角度（存在），存在大量重复的角度，例如角ABC和角CBA等
+    # All angles exist, there are a lot of duplicate angles, such as Angle ABC and CBA etc
     angles = get_all_instances(graph_parse, 'angle')
     choose, maxlen = None, 0.0
     for idx, pos in angles.items():
         if len(set(idx) & set(delete_points)) > 0: continue
         angle = calc_angle(pos[0], pos[1], pos[2])
-        # 角点在检测框周边
+        # The corners are around the detection box
         if in_box(pos[1], box, gap = 5):   # change 3 to 5
             # The angle needs to approach pi/2 (90).
             if angle >= math.pi / 2.0 - 0.15 and angle <= math.pi / 2.0 + 0.15:
@@ -128,10 +128,10 @@ def solveAngles(boxes, graph_parse, delete_points, formula_list, log_message):
         for idx, pos in angles.items():
             if len(set(idx) & set(delete_points)) > 0: continue
             # The point [mid] must lie in the angle.
-            #print (id, pos)
-            #print (cross(pos[1], mid, pos[0]), cross(pos[1], mid, pos[2]))
+            # print (id, pos)
+            # print (cross(pos[1], mid, pos[0]), cross(pos[1], mid, pos[2]))
             if cross(pos[1], mid, pos[0]) * cross(pos[1], mid, pos[2]) > 0: continue
-            #print (in_line((pos[1], pos[0]), mid), in_line((pos[1], pos[2]), mid))
+            # print (in_line((pos[1], pos[0]), mid), in_line((pos[1], pos[2]), mid))
             if not in_line((pos[1], pos[0]), mid): continue
             if not in_line((pos[1], pos[2]), mid): continue
             nowlen= dist(pos[1], mid)
@@ -153,7 +153,7 @@ def solveAngles(boxes, graph_parse, delete_points, formula_list, log_message):
 def solveSigns(graph_parse, factor, sign_results, log_message):
     offset = graph_parse.image_segment_parse.diagram_image_segment.offset
     sign2box = {}
-    # 考虑位置偏移以及尺度缩放
+    # consider position offset and scale scaling
     for element in sign_results:
         label = element[4]
         if not label in sign2box:

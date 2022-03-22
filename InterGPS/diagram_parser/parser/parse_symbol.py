@@ -15,7 +15,9 @@ def count_numbers(ocr_result):
     return numbers
 
 def seem_angle(numbers, label, point_distances, line_distances):
-    '''A single number can also represent an angle, and we try to figure it out.'''
+    '''
+        A single number can also represent an angle, and we try to figure it out.
+    '''
     count = 1
     while count in numbers:
         count += 1
@@ -54,7 +56,7 @@ def generate_label(graph_parse, ocr_result, delete_points, factor, log_message):
         label = element[4]
         position = instantiators['point']((element[0] + element[2]) / 2 * factor[0] - offset[0], 
                                         (element[1] + element[3]) / 2 * factor[1] - offset[1])
-        #print ("!!", element, factor, position, label)
+        # print ("!!", element, factor, position, label)
         structure = {"x": position.x, "y": position.y, "label": label, "type": ""}
         point_distances = [label_distance_to_point(position, instance) for key, instance in points.items()]
         line_distances = [min(distance_between_line_and_point(instance, position), label_distance_to_line(position, instance, True))
@@ -76,7 +78,7 @@ def generate_label(graph_parse, ocr_result, delete_points, factor, log_message):
                 structure['label'] = label
                 # Basically, using 'x/y/z' to represent the length of a line is different from using 'l/m/n' to represent a line.
                 # 'x/y/z' to represent the length of a line
-                # 'l/m/n' to represent a line (这一部分没有实现)
+                # 'l/m/n' to represent a line (not implement)
                 # In this code, we consider them as the same thing.
             else:
                 structure['type'] = 'point'
@@ -90,4 +92,5 @@ def generate_label(graph_parse, ocr_result, delete_points, factor, log_message):
             log_message.append(str(label) + " can not be recognized.")
         else:
             label_result.append(structure)
+            
     return label_result
