@@ -130,75 +130,75 @@ python calc_diagram_accuracy.py \
 	</tr>
     <tr>
         <td rowspan="4"><b>All</b></td>
-        <td>Likely Same</td>
+        <td><b>Likely Same</b></td>
 	    <td align="center">65.7</td>
 	    <td align="center">98.4</td>
 	    <td align="center">99.0</td>  
 	</tr>
     <tr>
-        <td>Almost Same</td>
+        <td><b>Almost Same</b></td>
 	    <td align="center">44.4</td>
 	    <td align="center">93.1</td>
 	    <td align="center">96.6</td>  
 	</tr>
     <tr>
-        <td>Perfect Recall</td>
+        <td><b>Perfect Recall</b></td>
 	    <td align="center">40.0</td>
 	    <td align="center">79.7</td>
 	    <td align="center">86.2</td>  
 	</tr>
     <tr>
-        <td>Totally Same</td>
+        <td><b>Totally Same</b></td>
 	    <td align="center"><b>27.3</b></td>
 	    <td align="center"><b>78.2<font color='red'> (+50.9) </font></b></td>
 	    <td align="center"><b>84.7<font color='red'> (+6.5) </font></b></td>  
 	</tr>
       <tr>
         <td rowspan="4"><b>Geo2Geo</b></td>
-        <td>Likely Same</td>
+        <td><b>Likely Same</b></td>
         <td align="center">63.9</td>
 	    <td align="center">99.1</td>
 	    <td align="center">99.0</td>
 	</tr>
     <tr>
-        <td>Almost Same</td>
+        <td><b>Almost Same</b></td>
         <td align="center">49.4</td>
 	    <td align="center">97.3</td>
 	    <td align="center">97.1</td>   
 	</tr>
     <tr>
-        <td>Perfect Recall</td>
+        <td><b>Perfect Recall</b></td>
 	    <td align="center">78.7</td>
 	    <td align="center">96.9</td>
 	    <td align="center">97.4</td>  
 	</tr>
     <tr>
-        <td>Totally Same</td>
+        <td><b>Totally Same</b></td>
 	    <td align="center">40.8</td>
 	    <td align="center">93.6</td>
 	    <td align="center">94.5</td>  
 	</tr>
       <tr>
         <td rowspan="4"><b>Non-Geo2Geo</b></td>
-        <td>Likely Same</td>
+        <td><b>Likely Same</b></td>
 	    <td align="center">67.3</td>
 	    <td align="center">95.8</td>
 	    <td align="center">98.0</td>  
 	</tr>
     <tr>
-        <td>Almost Same</td>
+        <td><b>Almost Same</b></td>
 	    <td align="center">49.8</td>
 	    <td align="center">88.2</td>
 	    <td align="center">94.9</td>  
 	</tr>
     <tr>
-        <td>Perfect Recall</td>
+        <td><b>Perfect Recall</b></td>
 	    <td align="center">45.7</td>
 	    <td align="center">81.3</td>
 	    <td align="center">87.0</td>  
 	</tr>
     <tr>
-        <td>Totally Same</td>
+        <td><b>Totally Same</b></td>
 	    <td align="center">40.5</td>
 	    <td align="center">80.6</td>
 	    <td align="center">86.4</td>  
