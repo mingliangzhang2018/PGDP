@@ -1,10 +1,10 @@
 ## Plane Geometry Diagram Parsing (PGDP)
 
-The code and dataset for IJCAI 2022 Paper "[*Plane Geometry Diagram Parsing*]()".
+The code and dataset for IJCAI 2022 paper "[*Plane Geometry Diagram Parsing*]()".
 
 We propose the **PGDPNet**, the first end-to-end deep learning model for explicit geometry diagram parsing. And we construct a large-scale dataset **PGDP5K**, containing dense and fine-grained annotations of primitives and relations. Our method demonstrates superior performance of diagram parsing, outperforming previous methods remarkably.
 <div align=center>
-	<img src="framework.png">
+	<img src="images/framework.png">
 	
 </div>
 <div align=center>
@@ -12,11 +12,15 @@ We propose the **PGDPNet**, the first end-to-end deep learning model for explici
 </div>
 </br>
 <div align=center>
-	<img src="compare.png">
+	<img src="images/compare.png">
 </div>
 <div align=center>
 	Figure 2. Compare with SGG
 </div>
+
+## Updates
+
+- Complete submission of the initial model (1/4/2022)
 
 ## PGDP5K Dataset
 You could download the dataset from:
@@ -64,46 +68,149 @@ conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10
 conda install -c dglteam dgl-cuda10.1
 ```
 
-We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch size will bring a little performance improvment.
+We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch size will bring some performance improvment.
 
+## Installation
 
-
-## Usage
-
-Decompress three json files of train/val/test datasets in the fold of **./dataset/AiProducts**, more details please see the config files in the fold of **./configs**.
-
-```bash
-# Get dataset of AiProducts
-sh ./dataset/get_dataset_AiProducts.sh
+The following will install the lib with symbolic links, so that you can modify the files if you want and won't need to re-build it.
+```
+python setup.py build develop --no-deps
 ```
 
-```bash
-# Training the model and the models will be saved in the fold of ./log/AiProducts 
-python main.py  
+## Training
+
+At first, you should set the paths of dataset in the `./geo_parse/config/paths_catalog.py`. Change the varibles of `DATA_DIR`, `PGDP5K_train`, `PGDP5K_val` and `PGDP_test` according to the location of PGDP5K dataset. The default parameter configurations are set in the config files of `./configs/PGDP5K/geo_MNV2_FPN.yaml` and `./geo_parse/config/defaults.py`, and you could adjust them according to your situations.
+
+```
+python -m torch.distributed.launch \
+    --nproc_per_node=4 \
+    --master_port=$((RANDOM + 10000)) \
+    tools/train_net.py \
+    --config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
+    SOLVER.IMS_PER_BATCH 12 \
+    TEST.IMS_PER_BATCH 12 \
+    OUTPUT_DIR training_dir/PGDP5K_geo_MNV2_FPN
+```
+The training records of the PGDPNet are saved in the folder `OUTPUT_DIR`, including models, log, last checkpoint and inference results.  
+
+## Inference
+
+Set the path of model weight and corresponding config file to get inference results, and the parsing results are saved in the new folder `.\inference` by default.
+
+```
+python tools/test_net.py \
+    --config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
+    MODEL.WEIGHT training_dir/PGDP5K_geo_MNV2_FPN/model_final.pth \
+    TEST.IMS_PER_BATCH 3
+```
+The inference process use one GPU with batch size 3 in default. Due to affect of image resolution in the preprocessing, it has some difference ammong experimental results with various batch sizes. And You could reduce image resolutions appropriatly to accelerate inference while maintaining comparable performance.
+
+## Logic Form Evaluation
+
+Considering the diversity and equality of logic forms, we improved the evaluation method based on [Inter-GPS](https://github.com/lupantech/InterGPS). You can evaluate the generated logic forms compared with the ground truth:
+
+```
+cd ./InterGPS/diagram_parser/evaluation_new
+```
+```
+python calc_diagram_accuracy.py \ 
+    --test_set_path ./PGDP5K/test \ 
+    --diagram_gt ./PGDP5K/our_diagram_logic_forms_annot.json \ 
+    --diagram_pred ...
 ```
 
-```bash
-# Finetune the model
-python main.py --RESUME_MODEL ./log/AiProducts/best_model.pth --DATASET_TRAIN_JSON ./dataset/AiProducts/converted_val.json 
-```
- 
-```bash
-# Test the model
-python test.py --RESUME_MODEL ./log/AiProducts/best_model.pth
-```
-
-```bash
-# Adjust the classifier using the tau-norm method and the models will be saved in the fold of ./log_tau
-python tau_norm.py --RESUME_MODEL ./log/AiProducts/best_model.pth
-```
-
-More experiments need to be tried such as different *image size*, *backbone*, *optimizer* or *learning rate decay method* which noly need change the config file.
-
+<div align=center>
+	Table 1.Evaluation Results of Logic Form
+</div>
+</br>
+<table align="center">
+	<tr>
+        <td colspan="2"></td>
+	    <td align="center"><b>InterGPS</b></td>
+	    <td align="center"><b>PGDPNet<br>w/o GNN</b></td>
+	    <td align="center"><b>PGDPNet</b></td>  
+	</tr>
+    <tr>
+        <td rowspan="4"><b>All</b></td>
+        <td><b>Likely Same</b></td>
+	    <td align="center">65.7</td>
+	    <td align="center">98.4</td>
+	    <td align="center">99.0</td>  
+	</tr>
+    <tr>
+        <td><b>Almost Same</b></td>
+	    <td align="center">44.4</td>
+	    <td align="center">93.1</td>
+	    <td align="center">96.6</td>  
+	</tr>
+    <tr>
+        <td><b>Perfect Recall</b></td>
+	    <td align="center">40.0</td>
+	    <td align="center">79.7</td>
+	    <td align="center">86.2</td>  
+	</tr>
+    <tr>
+        <td><b>Totally Same</b></td>
+	    <td align="center"><b>27.3</b></td>
+	    <td align="center"><b>78.2<font color='red'> (+50.9) </font></b></td>
+	    <td align="center"><b>84.7<font color='red'> (+6.5) </font></b></td>  
+	</tr>
+      <tr>
+        <td rowspan="4"><b>Geo2Geo</b></td>
+        <td><b>Likely Same</b></td>
+        <td align="center">63.9</td>
+	    <td align="center">99.1</td>
+	    <td align="center">99.0</td>
+	</tr>
+    <tr>
+        <td><b>Almost Same</b></td>
+        <td align="center">49.4</td>
+	    <td align="center">97.3</td>
+	    <td align="center">97.1</td>   
+	</tr>
+    <tr>
+        <td><b>Perfect Recall</b></td>
+	    <td align="center">78.7</td>
+	    <td align="center">96.9</td>
+	    <td align="center">97.4</td>  
+	</tr>
+    <tr>
+        <td><b>Totally Same</b></td>
+	    <td align="center">40.8</td>
+	    <td align="center">93.6</td>
+	    <td align="center">94.5</td>  
+	</tr>
+      <tr>
+        <td rowspan="4"><b>Non-Geo2Geo</b></td>
+        <td><b>Likely Same</b></td>
+	    <td align="center">67.3</td>
+	    <td align="center">95.8</td>
+	    <td align="center">98.0</td>  
+	</tr>
+    <tr>
+        <td><b>Almost Same</b></td>
+	    <td align="center">49.8</td>
+	    <td align="center">88.2</td>
+	    <td align="center">94.9</td>  
+	</tr>
+    <tr>
+        <td><b>Perfect Recall</b></td>
+	    <td align="center">45.7</td>
+	    <td align="center">81.3</td>
+	    <td align="center">87.0</td>  
+	</tr>
+    <tr>
+        <td><b>Totally Same</b></td>
+	    <td align="center">40.5</td>
+	    <td align="center">80.6</td>
+	    <td align="center">86.4</td>  
+	</tr>
+</table>
 
 ## Demo
-We also realize the demo script `demo/PGDP_Demo.ipynb`. Because this project has not implemented the text recognizer, only samples from the PGDP5K can be tested at this time where the text content is set as ground truth. During use, you could adjust corresponding variables in the demo script, such as `config-file`, `weights`, `MODEL.DEVICE` and `img_path`.
+We also realize the demo script in the `demo/PGDP_Demo.ipynb`. Because this project has not implemented a text recognizer, only samples from the PGDP5K can be tested at this time Whose text contents are set as ground truth. During use, you could adjust corresponding variables in the demo script, such as `config-file`, `weights`, `MODEL.DEVICE` and `img_path`.
 <div align=center>
-	<img src="demo.png">
+	<img src="images/demo.png">
 </div>
 <div align=center>
 	Figure 3. Demo of Parsing Output
