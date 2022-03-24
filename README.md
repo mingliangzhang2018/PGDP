@@ -58,7 +58,7 @@ You could download the dataset from:
 }
 ```
 ## Environmental Settings
-- Python version: **3.8.3**
+- Python version: **3.8**
 - CUDA version: **10.1**
 - GCC version: **5.4.0**
 - Other settings refer to *requirements.txt*
