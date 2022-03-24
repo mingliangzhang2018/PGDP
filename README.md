@@ -63,9 +63,9 @@ You could download the dataset from:
 - GCC version: **5.4.0**
 - Other settings refer to *requirements.txt*
 ```
-pip install -r requirements.txt
 conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.1 -c pytorch
 conda install -c dglteam dgl-cuda10.1
+pip install -r requirements.txt
 ```
 
 We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch size will bring some performance improvment.

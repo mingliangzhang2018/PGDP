@@ -25,7 +25,6 @@ requirements = [
     "pandas",
     "imagehash",
     "pycocotools",
-    "sklearn",
     "antlr4-python3-runtime",
     "kanren",
     "sympy",
