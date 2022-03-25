@@ -107,7 +107,7 @@ The inference process use one GPU with batch size 1 in default. Due to effect of
 
 ## Logic Form Evaluation
 
-Considering the diversity and equality of logic forms, we improved the evaluation method based on [Inter-GPS](https://github.com/lupantech/InterGPS). You can evaluate the generated logic forms compared with the ground truth:
+Considering the diversity and equality of logic forms, we improved the evaluation method based on [Inter-GPS](https://github.com/lupantech/InterGPS). You can evaluate the generated logic forms compared with the ground truth by setting paths of test set (`test_set_path`), ground truth of logic form (`diagram_gt`) and predication of logic form (`diagram_pred`):
 
 ```
 cd ./InterGPS/diagram_parser/evaluation_new
@@ -116,7 +116,7 @@ cd ./InterGPS/diagram_parser/evaluation_new
 python calc_diagram_accuracy.py \ 
     --test_set_path ./PGDP5K/test \ 
     --diagram_gt ./PGDP5K/our_diagram_logic_forms_annot.json \ 
-    --diagram_pred ...
+    --diagram_pred ./inference/PGDP5K_test/logic_forms_pred.json
 ```
 
 <div align=center>
