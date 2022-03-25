@@ -88,7 +88,7 @@ python -m torch.distributed.launch \
     tools/train_net.py \
     --config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
     SOLVER.IMS_PER_BATCH 12 \
-    TEST.IMS_PER_BATCH 12 \
+    TEST.IMS_PER_BATCH 4 \
     OUTPUT_DIR training_dir/PGDP5K_geo_MNV2_FPN
 ```
 The training records of the PGDPNet are saved in the folder `OUTPUT_DIR`, including models, log, last checkpoint and inference results.  
@@ -101,9 +101,9 @@ Set the path of model weight and corresponding config file to get inference resu
 python tools/test_net.py \
     --config-file configs/PGDP5K/geo_MNV2_FPN.yaml \
     MODEL.WEIGHT training_dir/PGDP5K_geo_MNV2_FPN/model_final.pth \
-    TEST.IMS_PER_BATCH 3
+    TEST.IMS_PER_BATCH 1
 ```
-The inference process use one GPU with batch size 3 in default. Due to effect of image resolution in the preprocessing, it has some difference ammong experimental results with various batch sizes. And You could reduce image resolutions appropriatly to accelerate inference while maintaining comparable performance.
+The inference process use one GPU with batch size 1 in default. Due to effect of image resolution in the preprocessing, it has some difference ammong experimental results with various batch sizes. And You could reduce image resolutions appropriatly to accelerate inference while maintaining comparable performance.
 
 ## Logic Form Evaluation
 
