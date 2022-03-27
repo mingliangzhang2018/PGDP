@@ -103,7 +103,7 @@ python tools/test_net.py \
     MODEL.WEIGHT training_dir/PGDP5K_geo_MNV2_FPN/model_final.pth \
     TEST.IMS_PER_BATCH 1
 ```
-The inference process use one GPU with batch size 1 in default. Due to effect of image resolution in the preprocessing, it has some difference ammong experimental results with various batch sizes. And You could reduce image resolutions appropriatly to accelerate inference while maintaining comparable performance.
+The inference process use one GPU with batch size 1 in default. Due to effect of image resolution in the preprocessing, it has some difference ammong experimental results with various batch sizes. And you could reduce image resolutions appropriatly to accelerate inference while maintaining comparable performance.
 
 ## Logic Form Evaluation
 
