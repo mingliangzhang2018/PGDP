@@ -222,7 +222,13 @@ If the paper, the dataset, or the code helps you, please cite the papers in the 
 ```
 @inproceedings{,
   title = {Plane Geometry Diagram Parsing},
-  author = {},
+  author = {Ming-Liang Zhang, Yi-Han Hao, Fei Yin and Cheng-Lin Liu},
+  booktitle = {},
+  year = {2022}
+}
+@inproceedings{,
+  title = {PGDP5K：A Diagram Parsing Dataset for Plane Geometry Problems},
+  author = {Yihan Hao, Mingliang Zhang, Fei Yin, Lin-Lin Huang},
   booktitle = {},
   year = {2022}
 }
