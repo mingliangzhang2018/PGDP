@@ -33,7 +33,7 @@ MODEL:
     LOSS_RATIO_VAR: 4.0  # loss weight of discriminative loss
     LOSS_RATIO_DIST: 4.0
     LOSS_RATIO_REG: 0.0
-    CLASS_WEIGHTS: [10, 1, 4] # weight for BCE LOSS in the task of binary seg
+    CLASS_WEIGHTS: [5, 1, 4] # weight for BCE LOSS in the task of binary seg
     BIN_SEG_TH: [0.5, 0.5, 0.5] # threshold in the task of binaray seg
     MIN_AREA_RATIO: [0.3, 0.16, 0.2]  # postprocessing of instance seg
   VISEMB:
