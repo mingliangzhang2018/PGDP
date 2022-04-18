@@ -113,7 +113,7 @@ class GeoList(object):
 
     def get_binary_seg_target(self, class_index, reshape_size):
         '''
-            target: tensor [w, h] (reshape_size)
+            target: tensor [h, w] (reshape_size)
         '''
         index_list = []
         for i in range(len(self)):
@@ -125,7 +125,7 @@ class GeoList(object):
                      (0,max(0, reshape_size[1]-self.masks.shape[1])))
         target=np.pad(target, pad_width, 'constant', constant_values=(False,False)) 
 
-        return target # tensor: [w, h] of reshape_size
+        return target 
         
     def get_inst_seg_target(self, class_index_list, reshape_size):
         '''
