@@ -221,15 +221,15 @@ We also realize the demo script in the `demo/PGDP_Demo.ipynb`. Because this proj
 
 If the paper, the dataset, or the code helps you, please cite the papers in the following format:
 ```
-@inproceedings{,
+@inproceedings{Zhang22,
   title = {Plane Geometry Diagram Parsing},
   author = {Ming-Liang Zhang, Yi-Han Hao, Fei Yin and Cheng-Lin Liu},
   booktitle = {IJCAI-ECAI},
   year = {2022}
 }
-@inproceedings{,
+@inproceedings{Hao22,
   title = {PGDP5K：A Diagram Parsing Dataset for Plane Geometry Problems},
-  author = {Yihan Hao, Mingliang Zhang, Fei Yin, Lin-Lin Huang},
+  author = {Yihan Hao, Mingliang Zhang, Fei Yin and Lin-Lin Huang},
   booktitle = {ICPR under review},
   year = {2022}
 }
