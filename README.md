@@ -20,7 +20,7 @@ We propose the **PGDPNet**, the first end-to-end deep learning model for explici
 
 ## Updates
 
-- Complete submission of the initial model (1/4/2022)
+- Complete submission of the initial model (21/4/2022)
 
 ## PGDP5K Dataset
 You could download the dataset from:
