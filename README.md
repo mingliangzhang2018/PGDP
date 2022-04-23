@@ -223,7 +223,7 @@ If the paper, the dataset, or the code helps you, please cite the papers in the 
 ```
 @inproceedings{Zhang2022,
   title = {Plane Geometry Diagram Parsing},
-  author = {Ming-Liang Zhang, Yi-Han Hao, Fei Yin and Cheng-Lin Liu},
+  author = {Ming-Liang Zhang, Fei Yin, Yi-Han Hao and Cheng-Lin Liu},
   booktitle = {IJCAI-ECAI},
   year = {2022}
 }
