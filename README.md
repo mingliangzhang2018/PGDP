@@ -38,7 +38,7 @@ You could download the dataset from:
         "lines": [id, loc(x1, y1, x2, y2)],
         "circles": [id, loc(x, y, r, quadrant)]           
     },
-    "symbols": [id, sym_class, text_class, text_content, bbox(x, y, w, h)]
+    "symbols": [id, sym_class, text_class, text_content, bbox(x, y, w, h)],
     "relations": {
         "geo2geo": [point2line(online, endpoint), point2circle(oncircle, center)],
         "sym2sym": [...],
@@ -50,7 +50,7 @@ You could download the dataset from:
 ```
 "name": {
     "point_instances": [...],
-    "line_instances": [...]
+    "line_instances": [...],
     "circle_instances": [...],
     "diagram_logic_forms": [
         PointLiesOnLine, PointLiesOnCircle, Equals, MeasureOf, Perpendicular, Parallel, LengthOf, ...
