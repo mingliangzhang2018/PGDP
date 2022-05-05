@@ -53,7 +53,8 @@ You could download the dataset from:
     "line_instances": [...],
     "circle_instances": [...],
     "diagram_logic_forms": [
-        PointLiesOnLine, PointLiesOnCircle, Equals, MeasureOf, Perpendicular, Parallel, LengthOf, ...
+        PointLiesOnLine, PointLiesOnCircle, Equals, MeasureOf, Perpendicular, 
+        Parallel, LengthOf, ...
     ],
     "point_positions": {...}
 }
