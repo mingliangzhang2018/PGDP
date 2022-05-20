@@ -24,7 +24,7 @@ We propose the **PGDPNet**, the first end-to-end deep learning model for explici
 
 ## PGDP5K Dataset
 You could download the dataset from:
-- [[Detail Introduction](http://www.nlpr.ia.ac.cn/databases/CASIA-PGDP5K/)]
+- [[Dataset Webpage](http://www.nlpr.ia.ac.cn/databases/CASIA-PGDP5K/)]
 - [[BaiduYun link](https://pan.baidu.com/s/1TDtWxf0bQZEDnFRGzoxKbg)], _keyword_: vf9f
 - [[GoogleDrive link](https://drive.google.com/file/d/1OT332RT-4bV8IKeaaLe2LjWqs1iELoil/view?usp=sharing)]
 
