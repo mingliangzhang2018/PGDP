@@ -68,7 +68,7 @@ conda install -c dglteam dgl-cuda10.1==0.6.1
 pip install -r requirements.txt
 ```
 
-We use **4 NVIDIA 1080ti GPUs** for the training and more GPUs with large batch size will bring some performance improvment.
+We use **4 NVIDIA TITAN Xp GPUs** for the training and more GPUs with large batch size will bring some performance improvment.
 
 ## Installation
 
