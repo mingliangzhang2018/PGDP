@@ -297,7 +297,7 @@ def get_Bar(id2name_dict, bar, elem_dict, img_name):
                         logic_form_each+='LengthOf(Arc('+line2_point1+", "+line2_point2+")))"
                 except:
                     print(img_name, 'error in bar!')
-
+                    continue
                 list_Bar.append(logic_form_each)
 
     list_Bar = list()
