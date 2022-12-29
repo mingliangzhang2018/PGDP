@@ -238,8 +238,6 @@ If the paper, the dataset, or the code helps you, please cite the papers in the 
   year={2022},
   pages={1763-1769}
 }
-
-}
 ```
 
 
