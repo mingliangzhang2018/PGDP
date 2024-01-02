@@ -220,6 +220,13 @@ We also realize the demo script in the `demo/PGDP_Demo.ipynb`. Because this proj
 
 If the paper, the dataset, or the code helps you, please cite the papers in the following format:
 ```
+@inproceedings{Zhang2023PGPS,
+  title     = {A Multi-Modal Neural Geometric Solver with Textual Clauses Parsed from Diagram},
+  author    = {Zhang, Ming-Liang and Yin, Fei and Liu, Cheng-Lin},
+  booktitle = {IJCAI},
+  year      = {2023},
+}
+
 @inproceedings{Zhang2022,
   title     = {Plane Geometry Diagram Parsing},
   author    = {Zhang, Ming-Liang and Yin, Fei and Hao, Yi-Han and Liu, Cheng-Lin},
@@ -231,11 +238,12 @@ If the paper, the dataset, or the code helps you, please cite the papers in the 
   doi       = {10.24963/ijcai.2022/228},
 }
 
-@inproceedings{Hao2022,
-  title = {PGDP5K：A Diagram Parsing Dataset for Plane Geometry Problems},
-  author = {Yihan Hao, Mingliang Zhang, Fei Yin and Lin-Lin Huang},
-  booktitle = {ICPR},
-  year = {2022}
+@article{Hao2022PGDP5KAD,
+  title={PGDP5K: A Diagram Parsing Dataset for Plane Geometry Problems},
+  author={Yihan Hao and Mingliang Zhang and Fei Yin and Linlin Huang},
+  journal={2022 26th International Conference on Pattern Recognition (ICPR)},
+  year={2022},
+  pages={1763-1769}
 }
 ```
 
