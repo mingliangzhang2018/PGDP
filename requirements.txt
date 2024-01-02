@@ -7,7 +7,7 @@ imagehash==4.2.1
 antlr4-python3-runtime==4.9.3
 kanren==0.2.3
 sympy==1.9
-scipy==1.7.3
+scipy==1.10.0
 multiprocess==0.70.12.2
 opencv-python==4.5.4.60
 scikit-image==0.19.0
