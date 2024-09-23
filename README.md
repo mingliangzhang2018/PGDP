@@ -23,7 +23,7 @@ We propose the **PGDPNet**, the first end-to-end deep learning model for explici
 - Complete submission of the initial model (21/4/2022)
 
 ## PGDP5K Dataset
-You could download the dataset from [Dataset Homepage](http://www.nlpr.ia.ac.cn/databases/CASIA-PGDP5K/index.html).
+You could download the dataset from [Dataset Homepage](http://www.nlpr.ia.ac.cn/databases/CASIA-PGDP5K/index.html). The password for this dataset is **pal_2022**.
 
 #### Format of Annotation
 ```
