@@ -249,4 +249,4 @@ If the paper, the dataset, or the code helps you, please cite the papers in the 
 
 
 ## Acknowledge
-The codes of this project are based on [FCOS](https://github.com/tianzhi0549/FCOS/) and [Inter-GPS](https://github.com/lupantech/InterGPS). Please let us know if you encounter any issues. You could contact with the first author (zhangmingliang2018@ia.ac.cn) or leave an issue in the github repo.
+The codes of this project are based on [FCOS](https://github.com/tianzhi0549/FCOS/) and [Inter-GPS](https://github.com/lupantech/InterGPS). Please let us know if you encounter any issues. You could contact with the first author or leave an issue in the github repo.
